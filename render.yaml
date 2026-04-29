@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: pdf-converter
+    runtime: python
+    plan: free
+    rootDir: .
+    buildCommand: >
+      pip install -r requirements.txt &&
+      apt-get update -qq &&
+      apt-get install -y --no-install-recommends
+        fonts-noto
+        fonts-noto-cjk
+        fonts-dejavu-core
+        fonts-liberation
+        fontconfig &&
+      fc-cache -f -v
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 180 --workers 2 --max-requests 500 --max-requests-jitter 50
+    healthCheckPath: /health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.7
+    autoDeploy: true
+
