@@ -1,3 +1,5 @@
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://oneclickpdf-oz0x.onrender.com)
+
 # PDF Converter & Translator
 
 A web application that converts **DOCX, Excel, and Image** files to PDF and translates **PDF and DOCX** documents into 50+ languages — with layout preservation. Built with Flask and deployable to Render in one click.
